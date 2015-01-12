@@ -10,7 +10,7 @@ module CtGov
   BASE_OPTIONS = '?displayxml=true'
   
   def self.find_by_nctid(nctid)
-    uri = URI.parse("#{BASE_URL}/ct2/show/#{nctid}#{BASE_OPTIONS}")
+    uri = ::URI.parse("#{BASE_URL}/ct2/show/#{nctid}#{BASE_OPTIONS}")
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -22,3 +22,4 @@ module CtGov
   end
 
 end
+
