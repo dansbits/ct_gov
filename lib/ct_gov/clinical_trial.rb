@@ -16,6 +16,10 @@ module CtGov
       @raw_trial['brief_title']
     end
     
+    def completion_date
+      Date.parse(@raw_trial['completion_date'])
+    end
+    
     def official_title
       @raw_trial['official_title']
     end
@@ -64,6 +68,10 @@ module CtGov
       @raw_trial['reference'].map do |reference|
         Publication.new(reference)
       end
+    end
+    
+    def primary_completion_date
+      Date.parse(@raw_trial['primary_completion_date'])
     end
     
     def start_date

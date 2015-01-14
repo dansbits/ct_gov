@@ -19,6 +19,12 @@ describe CtGov::ClinicalTrial do
     it { expect(subject).to eq 'Study of Systemic Lupus Erythematosus' }
   end
   
+  describe '#completion_date' do
+    subject { study.completion_date }
+    
+    it { expect(subject).to eq Date.parse('2015-07-01') }
+  end
+  
   describe '#detailed_description' do
     subject { study.detailed_description }
     
@@ -99,6 +105,12 @@ describe CtGov::ClinicalTrial do
       
       it { expect(subject).to be_nil }
     end
+  end
+  
+  describe '#primary_completion_date' do
+    subject { study.primary_completion_date }
+    
+    it { expect(subject).to eq Date.parse('2015-08-01') }
   end
   
   describe '#publications' do
