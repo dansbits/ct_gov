@@ -53,6 +53,37 @@ describe CtGov::ClinicalTrial do
     end
   end
   
+  describe '#locations' do
+    subject { study.locations }
+    
+    it 'returns an array of locations' do
+      expect(subject.first).to be_a CtGov::Location
+    end
+    
+    it 'sets the right values for the locations' do
+      loc = subject.first
+      
+      expect(loc.status).to eq 'Recruiting'
+    end
+    
+    context 'when no location is present' do
+      before { raw_trial.delete('location') }
+      
+      it { expect(subject).to eq [] }
+    end
+    
+    context 'when there are multiple locations' do
+      before { raw_trial['location'] = [{'status' => 'Recruiting'},{'status' => 'Not Recruiting'}] }
+      
+      it 'returns all locations' do
+        expect(subject.count).to eq 2
+        
+        expect(subject.first.status).to eq 'Recruiting'
+        expect(subject.last.status).to eq 'Not Recruiting'
+      end
+    end
+  end
+  
   describe '#max_age' do
     subject { study.max_age }
     

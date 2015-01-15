@@ -20,6 +20,16 @@ module CtGov
       Date.parse(@raw_trial['completion_date'])
     end
     
+    def locations
+      if @raw_trial['location'].nil?
+        []
+      else
+        [@raw_trial['location']].flatten.map do |loc|
+          Location.new(loc) unless loc.nil?
+        end
+      end
+    end
+    
     def official_title
       @raw_trial['official_title']
     end

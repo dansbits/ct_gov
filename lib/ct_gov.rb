@@ -1,7 +1,10 @@
 require "ct_gov/version"
+require 'ct_gov/address'
 require 'ct_gov/clinical_trial'
 require 'ct_gov/contact'
+require 'ct_gov/facility'
 require 'ct_gov/investigator'
+require 'ct_gov/location'
 require 'ct_gov/publication'
 
 require 'saxerator'
