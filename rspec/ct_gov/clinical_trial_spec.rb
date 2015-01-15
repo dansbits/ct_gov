@@ -53,6 +53,25 @@ describe CtGov::ClinicalTrial do
     end
   end
   
+  describe '#keywords' do
+    subject { study.keywords }
+    
+    let(:expected_keywords) {[
+      "Systemic Lupus Erythematosus",
+      "Natural History",
+      "Lupus Nephritis",
+      "Lupus",
+      "Systemic Lupus",
+      "SLE"
+    ]}
+    
+    it 'returns an array of all keywords for the study' do
+      expect(subject.count).to eq 6
+      
+      expect(subject - expected_keywords).to eq []
+    end
+  end
+  
   describe '#locations' do
     subject { study.locations }
     

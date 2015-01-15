@@ -20,6 +20,10 @@ module CtGov
       Date.parse(@raw_trial['completion_date'])
     end
     
+    def keywords
+      @raw_trial['keyword'].nil? ? [] : [@raw_trial['keyword']].flatten
+    end
+    
     def locations
       if @raw_trial['location'].nil?
         []
