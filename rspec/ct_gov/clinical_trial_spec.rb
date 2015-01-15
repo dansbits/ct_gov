@@ -25,6 +25,22 @@ describe CtGov::ClinicalTrial do
     it { expect(subject).to eq Date.parse('2015-07-01') }
   end
   
+  describe '#browse_conditions' do
+    subject { study.browse_conditions }
+    
+    it 'returns an array of all browse conditions' do
+      expect(subject.count).to eq 2
+      
+      expect(subject).to eq ['Lupus Erythematosus, Systemic', 'Nephritis']
+    end
+    
+    context 'when there are no browse_conditions' do
+      before { raw_trial.delete('condition_browse') }
+      
+      it { expect(subject).to eq [] }
+    end
+  end
+  
   describe '#detailed_description' do
     subject { study.detailed_description }
     
@@ -50,6 +66,22 @@ describe CtGov::ClinicalTrial do
       before { raw_trial['eligibility']['accepts_healthy_volunteers'] = 'No way!' }
       
       it { expect(subject).to eq false }
+    end
+  end
+  
+  describe '#browse_interventions' do
+    subject { study.browse_interventions }
+    
+    it 'returns an array of all browse conditions' do
+      expect(subject.count).to eq 2
+      
+      expect(subject).to eq ['Methylprednisolone', 'Mycophenolic']
+    end
+    
+    context 'when there are no browse_conditions' do
+      before { raw_trial.delete('intervention_browse') }
+      
+      it { expect(subject).to eq [] }
     end
   end
   

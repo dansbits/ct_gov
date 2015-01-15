@@ -16,8 +16,16 @@ module CtGov
       @raw_trial['brief_title']
     end
     
+    def browse_conditions
+      @raw_trial['condition_browse'].nil? ? [] : [@raw_trial['condition_browse']['mesh_term']].flatten
+    end
+    
     def completion_date
       Date.parse(@raw_trial['completion_date'])
+    end
+    
+    def browse_interventions
+      @raw_trial['intervention_browse'].nil? ? [] : [@raw_trial['intervention_browse']['mesh_term']].flatten
     end
     
     def keywords
