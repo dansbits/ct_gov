@@ -23,7 +23,7 @@ module CtGov
     request = Net::HTTP::Get.new(uri.request_uri)
     response = http.request(request)
 
-    ClinicalTrial.new(Saxerator.parser(response.body)) if response.code == "200"
+    ClinicalTrial.new(Saxerator.parser(response.body).for_tag(:clinical_study).first) if response.code == "200"
   end
 
 end
