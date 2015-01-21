@@ -87,8 +87,12 @@ module CtGov
     end
     
     def publications
-      @raw_trial['reference'].map do |reference|
-        Publication.new(reference)
+      if @raw_trial['reference'].nil?
+        []
+      else
+        [@raw_trial['reference']].flatten.map do |reference|
+          Publication.new(reference)
+        end
       end
     end
     

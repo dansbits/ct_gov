@@ -203,6 +203,12 @@ describe CtGov::ClinicalTrial do
     it { expect(subject.count).to eq 3 }
     
     it { expect(subject.first.pmid).to eq '7762914' }
+    
+    context 'when there are no publications' do
+      before { raw_trial.delete('reference') }
+      
+      it { expect(subject).to eq [] }
+    end
   end
   
   describe '#start_date' do

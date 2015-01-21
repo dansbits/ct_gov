@@ -8,6 +8,9 @@ require 'ct_gov/location'
 require 'ct_gov/publication'
 
 require 'saxerator'
+require 'uri'
+require 'openssl'
+require 'net/http'
 
 module CtGov
   
