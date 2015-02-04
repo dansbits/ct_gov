@@ -11,6 +11,11 @@ describe CtGov do
     it 'returns a clinical trial object' do
       expect(subject).to be_a CtGov::ClinicalTrial
     end
+    
+    it 'uses the find_by_nctid on clinical trial' do
+      expect(CtGov::ClinicalTrial).to receive(:find_by_nctid).with(nctid)
+      subject
+    end
   end
   
 end

@@ -85,6 +85,20 @@ describe CtGov::ClinicalTrial do
     end
   end
   
+  describe '.find_by_nctid' do
+    let(:nctid) { 'NCT01288560' }
+    
+    subject { CtGov.find_by_nctid(nctid) } 
+    
+    it 'returns a clinical trial object' do
+      expect(subject).to be_a CtGov::ClinicalTrial
+    end
+    
+    it 'uses the right values' do
+      expect(subject.brief_title).to eq 'IMAGE-HF Project I-A: Cardiac Imaging in Ischemic Heart Failure (AIMI-HF)'
+    end
+  end
+  
   describe '#keywords' do
     subject { study.keywords }
     

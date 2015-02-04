@@ -28,6 +28,18 @@ module CtGov
       @raw_trial['intervention_browse'].nil? ? [] : [@raw_trial['intervention_browse']['mesh_term']].flatten
     end
     
+    def self.find_by_nctid(nctid)
+      uri = ::URI.parse("#{CtGov::BASE_URL}/ct2/show/#{nctid}#{CtGov::BASE_OPTIONS}")
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      
+      request = Net::HTTP::Get.new(uri.request_uri)
+      response = http.request(request)
+  
+      ClinicalTrial.new(Saxerator.parser(response.body).for_tag(:clinical_study).first) if response.code == "200"
+    end
+    
     def keywords
       @raw_trial['keyword'].nil? ? [] : [@raw_trial['keyword']].flatten
     end
