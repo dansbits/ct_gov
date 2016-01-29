@@ -13,7 +13,7 @@ module CtGov
     end
     
     def brief_title
-      @raw_trial['brief_title']
+      squash_string(@raw_trial['brief_title'])
     end
     
     def browse_conditions
@@ -118,6 +118,16 @@ module CtGov
     
     def study_type
       @raw_trial['study_type']
+    end
+
+    def why_stopped
+      squash_string(@raw_trial['why_stopped'])
+    end
+
+    private
+
+    def squash_string(string)
+      string == "" ? nil : string
     end
   end
 end

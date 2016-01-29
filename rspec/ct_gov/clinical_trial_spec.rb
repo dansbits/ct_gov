@@ -17,6 +17,7 @@ describe CtGov::ClinicalTrial do
     subject { study.brief_title }
     
     it { expect(subject).to eq 'Study of Systemic Lupus Erythematosus' }
+
   end
   
   describe '#completion_date' do
@@ -235,5 +236,11 @@ describe CtGov::ClinicalTrial do
     subject { study.study_type }
     
     it { expect(subject).to eq 'Observational' }
+  end
+
+  describe '#why_stopped' do
+    subject { study.why_stopped }
+
+    it { expect(subject).to eq 'Replaced by another study.' }
   end
 end
