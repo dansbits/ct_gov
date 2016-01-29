@@ -1,5 +1,8 @@
 module CtGov
   class ClinicalTrial
+
+    attr_accessor :raw_trial
+
     def initialize(raw_trial)
       @raw_trial = raw_trial
     end
@@ -39,7 +42,15 @@ module CtGov
   
       ClinicalTrial.new(Saxerator.parser(response.body).for_tag(:clinical_study).first) if response.code == "200"
     end
-    
+
+    def firstreceived_date
+      Date.parse(@raw_trial['firstreceived_date'])
+    end
+
+    def lastchanged_date
+      Date.parse(@raw_trial['lastchanged_date'])
+    end
+
     def keywords
       @raw_trial['keyword'].nil? ? [] : [@raw_trial['keyword']].flatten
     end

@@ -53,7 +53,19 @@ describe CtGov::ClinicalTrial do
     
     it { expect(subject).to eq raw_trial['eligibility']['criteria']['textblock'] }
   end
-  
+
+  describe '#firstreceived_date' do
+    subject { study.firstreceived_date }
+
+    it { expect(subject).to eq Date.parse(raw_trial['firstreceived_date']) }
+  end
+
+  describe '#lastchanged_date' do
+    subject { study.lastchanged_date }
+
+    it { expect(subject).to eq Date.parse(raw_trial['lastchanged_date']) }
+  end
+
   describe '#healthy_volunteers?' do
     subject { study.healthy_volunteers? }
     
