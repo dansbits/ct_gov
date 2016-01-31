@@ -90,7 +90,7 @@ module CtGov
     end
     
     def detailed_description
-      @raw_trial['detailed_description']['textblock'].strip
+      @raw_trial['detailed_description']['textblock'].strip if @raw_trial['detailed_description']
     end
     
     def eligibility_description
