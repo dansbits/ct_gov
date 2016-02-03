@@ -86,7 +86,7 @@ module CtGov
     end
     
     def brief_summary
-      @raw_trial['brief_summary']['textblock'].strip
+      @raw_trial['brief_summary']['textblock'].strip if @raw_trial['brief_summary']
     end
     
     def detailed_description
