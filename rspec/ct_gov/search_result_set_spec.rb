@@ -1,6 +1,6 @@
 require_relative "../spec_helper"
 
-describe SearchResultSet do
+describe CtGov::SearchResultSet do
 
   let(:sample_result) { Saxerator.parser(File.read('rspec/data/sample_result.xml')).for_tag(:search_results).first }
 
@@ -13,7 +13,7 @@ describe SearchResultSet do
 
       resultset.each do |result|
         count = count + 1
-        expect(result).to be_a SearchResult
+        expect(result).to be_a CtGov::SearchResult
       end
 
       expect(count).to eq 20

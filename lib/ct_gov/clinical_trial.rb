@@ -30,7 +30,11 @@ module CtGov
     def browse_interventions
       @raw_trial['intervention_browse'].nil? ? [] : [@raw_trial['intervention_browse']['mesh_term']].flatten
     end
-    
+
+    def gender
+      squash_string @raw_trial['eligibility']['gender']
+    end
+
     def self.find_by_nctid(nctid)
       uri = ::URI.parse("#{CtGov::BASE_URL}/ct2/show/#{nctid}#{CtGov::BASE_OPTIONS}")
       http = Net::HTTP.new(uri.host, uri.port)

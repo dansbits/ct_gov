@@ -60,6 +60,12 @@ describe CtGov::ClinicalTrial do
     it { expect(subject).to eq Date.parse(raw_trial['firstreceived_date']) }
   end
 
+  describe '#gender' do
+    subject { study.gender }
+
+    it { expect(subject).to eq 'Both' }
+  end
+
   describe '#lastchanged_date' do
     subject { study.lastchanged_date }
 
