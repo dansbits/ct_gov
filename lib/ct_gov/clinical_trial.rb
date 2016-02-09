@@ -98,15 +98,27 @@ module CtGov
     end
     
     def eligibility_description
-      @raw_trial['eligibility']['criteria']['textblock']
+      squash_string(@raw_trial['eligibility']['criteria']['textblock'].strip) if @raw_trial['eligibility']['criteria']
     end
     
     def min_age
-      @raw_trial['eligibility']['minimum_age']
+      age_string = @raw_trial['eligibility']['minimum_age']
+
+      if age_string == 'N/A'
+        return nil
+      else
+        return age_string
+      end
     end
     
     def max_age
-      @raw_trial['eligibility']['maximum_age']
+      age_string = @raw_trial['eligibility']['maximum_age']
+
+      if age_string == 'N/A'
+        return nil
+      else
+        return age_string
+      end
     end
     
     def overall_status

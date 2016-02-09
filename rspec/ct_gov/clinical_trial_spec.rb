@@ -51,7 +51,7 @@ describe CtGov::ClinicalTrial do
   describe '#eligibility_description' do
     subject { study.eligibility_description }
     
-    it { expect(subject).to eq raw_trial['eligibility']['criteria']['textblock'] }
+    it { expect(subject).to eq raw_trial['eligibility']['criteria']['textblock'].strip }
   end
 
   describe '#firstreceived_date' do
@@ -171,13 +171,13 @@ describe CtGov::ClinicalTrial do
   describe '#max_age' do
     subject { study.max_age }
     
-    it { expect(subject).to eq raw_trial['eligibility']['maximum_age'] }
+    it { expect(subject).to eq '30 Years' }
   end
   
   describe '#min_age' do
     subject { study.min_age }
     
-    it { expect(subject).to eq raw_trial['eligibility']['minimum_age'] }
+    it { expect(subject).to eq '18 Years' }
   end
   
   describe '#nctid' do
