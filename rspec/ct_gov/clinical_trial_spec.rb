@@ -76,13 +76,13 @@ describe CtGov::ClinicalTrial do
     subject { study.healthy_volunteers? }
     
     context 'when the source value is "Accepts Healthy Volunteers"' do
-      before { raw_trial['eligibility']['accepts_healthy_volunteers'] = 'Accepts Healthy Volunteers' }
+      before { raw_trial['eligibility']['healthy_volunteers'] = 'Accepts Healthy Volunteers' }
       
       it { expect(subject).to eq true }
     end
     
     context 'when the source value is anything else' do
-      before { raw_trial['eligibility']['accepts_healthy_volunteers'] = 'No way!' }
+      before { raw_trial['eligibility']['healthy_volunteers'] = 'No way!' }
       
       it { expect(subject).to eq false }
     end

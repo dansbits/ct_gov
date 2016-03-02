@@ -8,7 +8,7 @@ module CtGov
     end
     
     def healthy_volunteers?
-      @raw_trial['eligibility']['accepts_healthy_volunteers'] == 'Accepts Healthy Volunteers'
+      @raw_trial['eligibility']['healthy_volunteers'] == 'Accepts Healthy Volunteers'
     end
     
     def nctid
