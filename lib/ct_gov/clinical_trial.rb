@@ -8,7 +8,7 @@ module CtGov
     end
     
     def healthy_volunteers?
-      @raw_trial['eligibility']['healthy_volunteers'] == 'Accepts Healthy Volunteers'
+      @raw_trial['eligibility']['healthy_volunteers'] == 'Accepts Healthy Volunteers' if @raw_trial['eligibility']
     end
     
     def nctid
@@ -32,7 +32,7 @@ module CtGov
     end
 
     def gender
-      squash_string @raw_trial['eligibility']['gender']
+      squash_string @raw_trial['eligibility']['gender'] if @raw_trial['eligibility']
     end
 
     def self.find_by_nctid(nctid)
@@ -98,11 +98,13 @@ module CtGov
     end
     
     def eligibility_description
-      squash_string(@raw_trial['eligibility']['criteria']['textblock'].strip) if @raw_trial['eligibility']['criteria']
+      if @raw_trial['eligibility'] && @raw_trial['eligibility']['criteria']
+        squash_string(@raw_trial['eligibility']['criteria']['textblock'].strip)
+      end
     end
     
     def min_age
-      age_string = @raw_trial['eligibility']['minimum_age']
+      age_string = @raw_trial['eligibility']['minimum_age'] if @raw_trial['eligibility']
 
       if age_string == 'N/A'
         return nil
@@ -112,7 +114,7 @@ module CtGov
     end
     
     def max_age
-      age_string = @raw_trial['eligibility']['maximum_age']
+      age_string = @raw_trial['eligibility']['maximum_age']  if @raw_trial['eligibility']
 
       if age_string == 'N/A'
         return nil
