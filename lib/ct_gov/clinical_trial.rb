@@ -8,7 +8,15 @@ module CtGov
     end
     
     def healthy_volunteers?
-      @raw_trial['eligibility']['healthy_volunteers'] == 'Accepts Healthy Volunteers' if @raw_trial['eligibility']
+      return nil if @raw_trial['eligibility'].nil?
+
+      healthy_volunteers = @raw_trial['eligibility']['healthy_volunteers']
+
+      if healthy_volunteers == 'Accepts Healthy Volunteers'
+        return true
+      elsif healthy_volunteers == 'No'
+        return false
+      end
     end
     
     def nctid

@@ -81,10 +81,22 @@ describe CtGov::ClinicalTrial do
       it { expect(subject).to eq true }
     end
     
-    context 'when the source value is anything else' do
-      before { raw_trial['eligibility']['healthy_volunteers'] = 'No way!' }
+    context 'when the source value is "No"' do
+      before { raw_trial['eligibility']['healthy_volunteers'] = 'No' }
       
       it { expect(subject).to eq false }
+    end
+
+    context 'when the source value is nil' do
+      before { raw_trial['eligibility']['healthy_volunteers'] = nil }
+
+      it { expect(subject).to be_nil }
+    end
+
+    context 'when the eligibility element does not exist' do
+      before { raw_trial['eligibility'] = nil }
+
+      it { expect(subject).to be_nil }
     end
   end
   
