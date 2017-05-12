@@ -1,6 +1,8 @@
 module CtGov
   class SearchResult
 
+    attr_accessor :result
+
     def initialize(raw_result)
       @result = raw_result
     end
