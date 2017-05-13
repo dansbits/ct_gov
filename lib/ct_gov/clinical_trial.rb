@@ -1,3 +1,5 @@
+require 'date'
+
 module CtGov
   class ClinicalTrial
 
@@ -146,7 +148,7 @@ module CtGov
     end
     
     def primary_completion_date
-      Date.parse(@raw_trial['primary_completion_date'])
+      Date.parse(@raw_trial['primary_completion_date']) if @raw_trial['primary_completion_date']
     end
     
     def start_date
