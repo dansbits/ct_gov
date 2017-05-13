@@ -32,7 +32,7 @@ module CtGov
     end
     
     def completion_date
-      Date.parse(@raw_trial['completion_date'])
+      Date.parse(@raw_trial['completion_date']) if @raw_trial['completion_date']
     end
     
     def browse_interventions
