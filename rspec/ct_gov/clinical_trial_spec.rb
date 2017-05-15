@@ -260,6 +260,14 @@ describe CtGov::ClinicalTrial do
     subject { study.start_date }
     
     it { expect(subject).to eq Date.parse('1994-02-01') }
+
+    context "when no start date is present" do
+      before { raw_trial.delete 'start_date' }
+
+      it "returns nil" do
+        expect(subject).to eq nil
+      end
+    end
   end
   
   describe '#study_type' do

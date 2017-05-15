@@ -152,7 +152,7 @@ module CtGov
     end
     
     def start_date
-      Date.parse(@raw_trial['start_date'])
+      Date.parse(@raw_trial['start_date']) if @raw_trial['start_date']
     end
     
     def study_type
