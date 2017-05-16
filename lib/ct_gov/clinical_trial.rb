@@ -22,11 +22,11 @@ module CtGov
     end
     
     def nctid
-      @raw_trial['id_info']['nct_id']
+      @raw_trial['id_info']['nct_id'].to_s
     end
     
     def brief_title
-      squash_string(@raw_trial['brief_title'])
+      squash_string(@raw_trial['brief_title'].to_s)
     end
     
     def browse_conditions
@@ -34,7 +34,7 @@ module CtGov
     end
     
     def completion_date
-      Date.parse(@raw_trial['completion_date']) if @raw_trial['completion_date']
+      Date.parse(@raw_trial['completion_date'].to_s) if @raw_trial['completion_date']
     end
     
     def browse_interventions
@@ -42,7 +42,7 @@ module CtGov
     end
 
     def gender
-      squash_string @raw_trial['eligibility']['gender'] if @raw_trial['eligibility']
+      squash_string @raw_trial['eligibility']['gender'].to_s if @raw_trial['eligibility']
     end
 
     def self.find_by_nctid(nctid)
@@ -54,15 +54,15 @@ module CtGov
       request = Net::HTTP::Get.new(uri.request_uri)
       response = http.request(request)
   
-      ClinicalTrial.new(Saxerator.parser(response.body).for_tag(:clinical_study).first) if response.code == "200"
+      ClinicalTrial.new(Saxerator.parser(response.body).for_tag(:clinical_study).first.to_hash) if response.code == "200"
     end
 
     def firstreceived_date
-      Date.parse(@raw_trial['firstreceived_date'])
+      Date.parse(@raw_trial['firstreceived_date'].to_s)
     end
 
     def lastchanged_date
-      Date.parse(@raw_trial['lastchanged_date'])
+      Date.parse(@raw_trial['lastchanged_date'].to_s)
     end
 
     def keywords
@@ -80,7 +80,7 @@ module CtGov
     end
     
     def official_title
-      @raw_trial['official_title']
+      @raw_trial['official_title'].to_s
     end
     
     def overall_contacts
@@ -100,21 +100,21 @@ module CtGov
     end
     
     def brief_summary
-      @raw_trial['brief_summary']['textblock'].strip if @raw_trial['brief_summary']
+      @raw_trial['brief_summary']['textblock'].to_s.strip if @raw_trial['brief_summary']
     end
     
     def detailed_description
-      @raw_trial['detailed_description']['textblock'].strip if @raw_trial['detailed_description']
+      @raw_trial['detailed_description']['textblock'].to_s.strip if @raw_trial['detailed_description']
     end
     
     def eligibility_description
       if @raw_trial['eligibility'] && @raw_trial['eligibility']['criteria']
-        squash_string(@raw_trial['eligibility']['criteria']['textblock'].strip)
+        squash_string(@raw_trial['eligibility']['criteria']['textblock'].to_s.strip)
       end
     end
     
     def min_age
-      age_string = @raw_trial['eligibility']['minimum_age'] if @raw_trial['eligibility']
+      age_string = @raw_trial['eligibility']['minimum_age'].to_s if @raw_trial['eligibility']
 
       if age_string == 'N/A'
         return nil
@@ -124,7 +124,7 @@ module CtGov
     end
     
     def max_age
-      age_string = @raw_trial['eligibility']['maximum_age']  if @raw_trial['eligibility']
+      age_string = @raw_trial['eligibility']['maximum_age'].to_s  if @raw_trial['eligibility']
 
       if age_string == 'N/A'
         return nil
@@ -134,7 +134,7 @@ module CtGov
     end
     
     def overall_status
-      @raw_trial['overall_status']
+      @raw_trial['overall_status'].to_s
     end
     
     def publications
@@ -148,19 +148,19 @@ module CtGov
     end
     
     def primary_completion_date
-      Date.parse(@raw_trial['primary_completion_date']) if @raw_trial['primary_completion_date']
+      Date.parse(@raw_trial['primary_completion_date'].to_s) if @raw_trial['primary_completion_date']
     end
     
     def start_date
-      Date.parse(@raw_trial['start_date']) if @raw_trial['start_date']
+      Date.parse(@raw_trial['start_date'].to_s) if @raw_trial['start_date']
     end
     
     def study_type
-      @raw_trial['study_type']
+      @raw_trial['study_type'].to_s
     end
 
     def why_stopped
-      squash_string(@raw_trial['why_stopped'])
+      squash_string(@raw_trial['why_stopped'].to_s)
     end
 
     private
