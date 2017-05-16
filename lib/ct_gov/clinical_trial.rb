@@ -6,7 +6,7 @@ module CtGov
     attr_accessor :raw_trial
 
     def initialize(raw_trial)
-      @raw_trial = raw_trial
+      @raw_trial = raw_trial.to_hash
     end
     
     def healthy_volunteers?

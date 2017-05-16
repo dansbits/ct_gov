@@ -28,7 +28,7 @@ module CtGov
     request = Net::HTTP::Get.new(uri.request_uri)
     response = http.request(request)
 
-    ClinicalTrial.new(Saxerator.parser(response.body).for_tag(:clinical_study).first) if response.code == "200"
+    ClinicalTrial.new(Saxerator.parser(response.body).for_tag(:clinical_study).first.to_hash) if response.code == "200"
   end
 
   def self.search(params)
@@ -44,7 +44,7 @@ module CtGov
     response = http.request(request)
 
     raw_resultset = Saxerator.parser(response.body).for_tag(:search_results).first
-    SearchResultSet.new(params, raw_resultset) if response.code == "200"
+    SearchResultSet.new(params, raw_resultset.to_hash) if response.code == "200"
   end
 
 end
