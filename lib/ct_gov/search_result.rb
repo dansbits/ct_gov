@@ -8,19 +8,19 @@ module CtGov
     end
 
     def condition_summary
-      @result['condition_summary']
+      @result['condition_summary'].to_s
     end
 
     def intervention_summary
-      @result['intervention_summary']
+      @result['intervention_summary'].to_s
     end
 
     def last_changed
-      Date.parse(@result['last_changed'])
+      Date.parse(@result['last_changed'].to_s)
     end
 
     def nct_id
-      @result['nct_id']
+      @result['nct_id'].to_s
     end
 
     def order
@@ -32,11 +32,11 @@ module CtGov
     end
 
     def status
-      @result['status']
+      @result['status'].to_s
     end
 
     def title
-      @result['title']
+      @result['title'].to_s
     end
   end
 end
