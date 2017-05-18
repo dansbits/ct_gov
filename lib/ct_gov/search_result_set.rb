@@ -7,7 +7,7 @@ module CtGov
       @params = params
       @response_xml = response_xml
 
-      @response_xml['clinical_study'] ||= []
+      @response_xml['clinical_study'] = [@response_xml['clinical_study']].flatten.compact
     end
 
     def each
