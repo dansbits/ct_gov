@@ -6,7 +6,7 @@ module CtGov
     end
     
     def name
-      @raw_facility['name']
+      @raw_facility['name'].to_s if @raw_facility['name']
     end
 
     def city

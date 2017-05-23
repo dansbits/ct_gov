@@ -2,7 +2,7 @@ require_relative "../spec_helper"
 
 describe CtGov::SearchResult do
 
-  let(:sample_resultset) { Saxerator.parser(File.read('rspec/data/sample_result.xml')).for_tag(:search_results).first }
+  let(:sample_resultset) { Saxerator.parser(File.read('spec/data/sample_result.xml')).for_tag(:search_results).first }
 
   let(:result) { described_class.new(sample_resultset['clinical_study'].first) }
 

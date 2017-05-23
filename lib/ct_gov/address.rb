@@ -6,19 +6,19 @@ module CtGov
     end
     
     def city
-      @raw_address['city']
+      @raw_address['city'].to_s if @raw_address['city']
     end
     
     def country
-      @raw_address['country']
+      @raw_address['country'].to_s if @raw_address['country']
     end
     
     def state
-      @raw_address['state']
+      @raw_address['state'].to_s if @raw_address['state']
     end
     
     def zip
-      @raw_address['zip']
+      @raw_address['zip'].to_s if @raw_address['zip']
     end
   end
 end

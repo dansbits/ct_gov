@@ -24,7 +24,7 @@ module CtGov
     end
     
     def status
-      @raw_location['status']
+      @raw_location['status'].to_s if @raw_location['status']
     end
   end
 end

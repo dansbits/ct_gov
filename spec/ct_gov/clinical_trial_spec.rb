@@ -2,7 +2,7 @@ require_relative '../spec_helper'
 
 describe CtGov::ClinicalTrial do
   
-  let(:raw_trial) { Saxerator.parser(File.read('rspec/data/sample_trial.xml')).for_tag(:clinical_study).first }
+  let(:raw_trial) { Saxerator.parser(File.read('spec/data/sample_trial.xml')).for_tag(:clinical_study).first }
   
   let(:study) { described_class.new(raw_trial) }
   
